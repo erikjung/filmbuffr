@@ -1,0 +1,35 @@
+@-webkit-keyframes error {
+    0% {background-color: #c04722;}
+    50% {background-color: #c04722;}
+    100% {background-color: #e65529;}
+}
+
+@-webkit-keyframes loading {
+    0% {color: #f5f5f5;}
+    50% {color: #f5f5f5;}
+    100% {color: #444e57;}
+}
+
+@-moz-keyframes error {
+    0% {background-color: #c04722;}
+    50% {background-color: #c04722;}
+    100% {background-color: #e65529;}
+}
+
+@-moz-keyframes loading {
+    0% {color: #f5f5f5;}
+    50% {color: #f5f5f5;}
+    100% {color: #444e57;}
+}
+
+@-ms-keyframes error {
+    0% {background-color: #c04722;}
+    50% {background-color: #c04722;}
+    100% {background-color: #e65529;}
+}
+
+@-ms-keyframes loading {
+    0% {color: #f5f5f5;}
+    50% {color: #f5f5f5;}
+    100% {color: #444e57;}
+}

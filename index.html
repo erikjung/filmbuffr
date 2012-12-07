@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset=utf-8>
+        <title>FilmBuffr - Browse your favorite directors on Netflix.</title>
+        <meta name=description content="Browse your favorite directors on Netflix.">
+        <meta name=author content="Erik David Jung">
+        <meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link rel=stylesheet href=lib.css>
+        <link rel=stylesheet href=style.css>
+        <script src=http://use.typekit.com/wzw3owo.js></script>
+        <script>try{Typekit.load();}catch(e){}</script>
+    </head>
+    <body>
+        <div id=menu>
+            <a href=#settings>Edit Directors</a>
+            <a href=#movies>Done</a>
+        </div>
+        <section id=settings>
+            <div>
+                <ul id=directors></ul>
+                <div>
+                    <button class=btn id=add_btn>Add a director</button>
+                    <input id=add_input>
+                </div>
+                <hgroup>
+                    <h2>Browse your favorite <br>directors on <a href=http://netflix.com>Netflix</a></h2>
+                    <h1>FilmBuffr</h1>
+                </hgroup>
+            </div>
+        </section>
+        <section id=main>
+            <div id=movies></div>
+            <footer>
+                <div id=info>
+                   <a href=#info>&#63;</a>
+                   <a href="#">&#63;</a>
+                   <p><strong>FilmBuffr</strong> provides a simple way to maintain a list of <a href=http://netflix.com>Netflix</a> movie titles organized by director. Your list of movies will be saved automatically for your next visit. <a href=#>Enjoy!</a></p>
+                </div>
+                <p>Made by <a href=http://jungcompany.com>Erik Jung</a> for <a href=http://10k.aneventapart.com>10k Apart</a></p>
+                <small>This application is using the <a href=http://developer.netflix.com/docs/oData_Catalog>Netflix OData API</a>, which is currently still in production. If you notice any oddities with the movie results, this is likely the cause.</small>
+            </footer>
+        </section>
+        <script type=filmbuffr/template id=director_tpl>
+            <li data-id={{id}}>
+                <label>
+                    <input type=checkbox data-id={{id}}>
+                </label>
+                <a href=#director_{{id}}>{{name}}</a>
+                <a class=delete href=# data-id={{id}}>Delete</a>
+            </li>
+        </script>
+        <script type=filmbuffr/template id=movie_tpl>
+            <li class=movieItem id=movie_{{id}}>
+               <a href=#movie_{{id}} data-url={{url}}>
+                  <img src={{img}} alt={{title}}>
+               </a>
+               <div class="info right">
+                  <h1><a href={{url}}>{{title}}</a><span>{{year}}</span></h1>
+                  <p>{{plot}}</p>
+                  <ul>
+                     <li><a class=btn href={{url}} data-id={{id}}>More Info</a></li>
+                  </ul>
+               </div>
+            </li>
+        </script>
+        <script type=filmbuffr/template id=watch_link_tpl>
+            <li><a class=btn href=http://movies.netflix.com/WiPlayer?movieid={{number}}>Watch</a></li>
+        </script>
+        <script type=filmbuffr/template id=movie_list_tpl>
+            <div class=movieList data-id={{id}} id=director_{{id}}>
+                <header>
+                    <a href=http://netflix.com/WiRoleDisplay?personid={{id}}>{{name}}</a>
+                </header>
+                <ol></ol>
+            </div>
+        </script>
+        <script type=filmbuffr/template id=error_tpl>
+            <div id=error>
+                <span><mark>{{name}}</mark> not found.</span>
+            </div>
+        </script>
+        <script type=filmbuffr/template id=loading_tpl>
+            <div id=loading>
+                <span>Loading</span>
+            </div>
+        </script>
+        <script src=http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.2.min.js></script>
+        <script src=app.js></script>
+    </body>
+</html>

@@ -1,0 +1,785 @@
+/* @group Vars */
+
+@slate: #2d343a;
+@white: #f5f5f5;
+@red: #C04722;
+@blue: #264C72;
+@shadow: rgba(0, 0, 0, .1);
+@hilight: rgba(255, 255, 255, .05);
+@check: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAPhJREFUeNrsloEJwyAQRUMn6AjdoI7gCBnBETqCG3SEjJARMoIjOIIjXBVSGmjukhq9a8AHEkiEPI67r13XaJwQALBxTXFpaZFrXAN88OmdpJCDb+xyz4VRZogPtfLpLlGZAdYJcSluGQM4PbeMImSeEhMVEBkn0TcTUR0lEXwY9p/6xpUaV/tD33hCSJcc15Syt8y8gTkYD1UHCzKD7O8JmXD4zCJGNjEuf7Ax4olHqeakfuLfPTELovtKTwwlBRsy5Y+HnVIYU81syZHStQMviFfngJTmOhrMDhnHfV5tSRmJ64WpnjuZUmERlCP7tbTRaJydlwADADIW1yh+wxdkAAAAAElFTkSuQmCC";
+@disp_font: proxima-nova-alt-ext-cond, sans-serif;
+@body_font: proxima-nova-condensed, sans-serif;
+@sidebar_width: 288px;
+
+.box-sizing() {
+    -moz-box-sizing: @arguments;
+    -ms-box-sizing: @arguments;
+    -webkit-box-sizing: @arguments;
+    box-sizing: @arguments;
+}
+
+.box-shadow() {
+    -moz-box-shadow: @arguments;
+    -ms-box-shadow: @arguments;
+    -webkit-box-shadow: @arguments;
+    box-shadow: @arguments;
+}
+
+.background-size() {
+   -moz-background-size: @arguments;
+   -ms-background-size: @arguments;
+   -webkit-background-size: @arguments;
+   background-size: @arguments;
+}
+
+.box-shadow-emboss() {
+    @box-shadow-a: inset 0 -1px 0 @shadow;
+    @box-shadow-b: inset 0 1px 0 @hilight;
+    -moz-box-shadow: @box-shadow-a, @box-shadow-b;
+    -ms-box-shadow: @box-shadow-a, @box-shadow-b;
+    -webkit-box-shadow: @box-shadow-a, @box-shadow-b;
+    box-shadow: @box-shadow-a, @box-shadow-b;
+}
+
+.hyphens() {
+   -webkit-hyphens: @arguments;
+   -moz-hyphens: @arguments;
+   -ms-hyphens: @arguments;
+   hyphens: @arguments;
+}
+
+.animation() {
+   -moz-animation: @arguments;
+   -ms-animation: @arguments;
+   -webkit-animation: @arguments;
+}
+
+.transition() {
+   -moz-transition: @arguments;
+   -ms-transition: @arguments;
+   -webkit-transition: @arguments;
+}
+
+/* @end */
+
+/* @group Reset */
+
+section,
+hgroup,
+header,
+footer,
+img {
+   display: block;
+}
+
+ul {
+   list-style: none;
+   margin: 0;
+   padding: 0;
+}
+
+input[type=checkbox] {
+   display: none;
+   font-family: @body_font;
+}
+
+mark {
+   background: none;
+}
+
+:focus {
+   outline: 0;
+}
+
+.cf:before,
+.cf:after {
+   content: "";
+   display: table;
+}
+
+.cf:after {
+   clear: both;
+}
+
+/* @end */
+
+/* @group Global */
+
+html {
+   background: @slate;
+   color: lighten(@slate, 10%);
+   font-family: @body_font;
+   font-size: 10px;
+   font-weight: 400;
+   height: 100%;
+   line-height: 1;
+   overflow-x: hidden;
+   width: 100%;
+   -webkit-text-size-adjust: 100%;
+}
+
+body {
+   height: 100%;
+   margin: 0;
+   padding: 0;
+   width: auto;
+}
+
+a {
+   color: @red;
+   text-decoration: none;
+}
+
+p, h1, small {
+   .hyphens(auto);
+}
+
+a:hover {
+   color: lighten(@red, 10%);
+}
+
+.btn {
+   background-image: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0.3)), color-stop(0.5, rgba(0, 0, 0, 0.1)));
+   background-image: -moz-linear-gradient(90deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.1) 50%);
+   background-image: -ms-linear-gradient(90deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.1) 50%);
+   border-radius: .25em;
+   .box-shadow-emboss();
+   cursor: pointer;
+   color: #fff;
+   font-family: @disp_font;
+   font-weight: 600;
+   position: relative;
+   text-shadow: 0 1px 0 @shadow;
+   text-transform: uppercase;
+}
+
+.btn:hover {
+   color: #fff;
+}
+
+.btn:active {
+   top: 1px;
+}
+
+#menu {
+    background-color: darken(@slate, 3%);
+    .box-sizing(border-box);
+    font-family: @disp_font;
+    font-size: 1.5rem;
+    left: 0;
+    line-height: 2rem;
+    padding: 1rem 2rem;
+    position: absolute;
+    text-transform: uppercase;
+    top: 0;
+    width: 100%;
+}
+
+#menu a {
+    color: lighten(@slate, 20%);
+    display: inline-block;
+}
+
+#menu a:last-child {
+    display: none;
+}
+
+#menu.alt a:last-child {
+    display: inline-block;
+}
+
+#menu.alt a:first-child {
+    display: none;
+}
+
+/* @end */
+
+/* @group Header */
+
+hgroup {
+   .box-shadow(inset 0 1px 0 @hilight);
+   cursor: default;
+   padding: 2rem 0;
+   text-shadow: 0 1px 1px rgba(0,0,0,.3);
+   white-space: nowrap;
+   width: 100%;
+}
+
+hgroup h1,
+hgroup h2 {
+    margin: 0;
+}
+
+hgroup h1 {
+   font-size: 3.5rem;
+   font-weight: 900;
+   line-height: 8rem;
+}
+
+hgroup h1:after {
+   color: @red;
+   content: ".";
+}
+
+hgroup h2 {
+   font-size: 1.7rem;
+   font-weight: 700;
+}
+
+hgroup a {
+   border-bottom: 1px solid @red;
+   color: @white;
+}
+
+/* @end */
+   
+/* @group Footer */
+
+#main > footer {
+  color: lighten(@slate, 15%);
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+#main > footer p {
+  font-family: @disp_font;
+  text-transform: uppercase;
+}
+
+#main > footer > p {
+   color: @white;
+   font-size: 2.5rem;
+   line-height: 1;
+}
+
+#main > footer > small {
+    display: block;
+    font-size: 1.3rem;
+    line-height: 1.5rem;
+    margin: 1rem auto;
+    min-width: @sidebar_width;
+}
+
+#info > a {
+   background-color: lighten(@slate, 10%);
+   border-radius: 1.5rem;
+   color: #fff;
+   display: inline-block;
+   font-size: 2rem;
+   font-weight: 700;
+   line-height: 1;
+   padding: .5rem 0;
+   width: 3rem;
+}
+
+#info > a:nth-child(2) {
+    display: none;
+}
+
+#info > p {
+   color: lighten(@slate, 15%);
+   display: none;
+   font-size: 1.7rem;
+   line-height: 2rem;
+}
+
+#info > p strong {
+   color: @white;
+   font-weight: normal;
+}
+
+#info:target p {
+   display: block;
+}
+
+#info:target > a:nth-child(2) {
+   background-color: @red;
+   display: inline-block;
+}
+
+#info:target > a:nth-child(1) {
+   display: none;
+}
+
+/* @end */
+
+/* @group Settings */
+
+#settings {
+   .box-sizing(border-box);
+   color: darken(@white, 10%);
+   overflow: hidden;
+   padding: 5rem 2rem;
+   width: 24rem;
+}
+
+#settings ::selection {
+   background: rgba(0,0,0,0);
+}
+
+#directors {
+   font-family: @disp_font;
+   font-size: 1.8rem;
+   text-transform: uppercase;
+}
+
+#directors li {
+   height: 1rem;
+   overflow: hidden;
+   position: relative;
+   .transition(height .1s ease);
+}
+
+#directors li,
+#directors + div {
+    .box-shadow-emboss();
+}
+
+#directors li:first-child {
+    .box-shadow(inset 0 -1px 0 @shadow);
+}
+
+#directors + div {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    padding: 2rem 0;
+}
+
+#directors .complete { /* the final height after the animation in */
+   height: 4rem;
+}
+
+#directors label,
+#directors a {
+   cursor: pointer;
+   display: inline-block;
+   overflow: hidden;
+   white-space: nowrap;
+   vertical-align: top;
+}
+
+#directors a {
+   color: @white;
+   line-height: 2rem;
+   padding: 1rem 0;
+}
+
+#directors label {
+   background: lighten(@slate, 15%) url(@check) no-repeat left center;
+   border-radius: .75rem;
+   .box-shadow(border-box);
+   .background-size(~"1.5rem");
+   height: 1.5rem;
+   line-height: 1.5rem;
+   margin: 1.25rem .25rem;
+   width: 1.5rem;
+}
+
+#directors .unchecked label {
+    background: @slate;
+    .box-shadow(inset 0 0 0 2px lighten(@slate, 15%));
+}
+
+#directors .unchecked a {
+   color: lighten(@slate, 20%);
+}
+
+#directors .delete {
+   color: lighten(@slate, 20%);
+   display: none;
+   font-size: 1.3rem;
+   position: absolute;
+   right: 0;
+   top: 0;
+}
+
+#directors .delete:hover {
+    color: @red;
+}
+
+#directors li:hover .delete {
+    display: inline-block;
+}
+
+/* @end */
+   
+/* @group New Director Input */
+
+#add_btn,
+#add_input {
+    border: 0;
+    .box-sizing(border-box);
+    display: inline-block;
+    font-size: 1.8rem;
+    height: 3rem;
+    padding: 0 1rem;
+    
+}
+
+#add_btn {
+    background-color: @red;
+    line-height: 2rem;
+    text-align: center;
+    width: auto;
+}
+
+#add_input {
+   background-color: @white;
+   .box-shadow(inset 0 .2em .2em @shadow);
+   color: @slate;
+   display: none;
+   font-family: @disp_font;
+   left: 0;
+   position: absolute;
+   top: 2rem;
+   width: 0;
+   .transition(width .1s ease-in);
+}
+
+#add_input.focused {
+    display: block;
+    width: 100%;
+}
+
+/* @end */
+
+/* @group User Feedback */
+
+#error,
+#loading {
+    font-family: @disp_font;
+    font-size: 1.7rem;
+    line-height: 2rem;
+    padding: .5rem 1rem;
+}
+
+#error {
+   .animation(error 500ms ease 0s infinite alternate);
+   background-color: @red;
+   color: @white;
+   display: none;
+}
+
+#error mark {
+   color: darken(@red, 30%);
+   text-transform: uppercase;
+}
+
+#error mark:before,
+#error mark:after {
+   content: "\0022";
+}
+
+#loading {
+   .animation(loading 500ms ease 0s infinite alternate);
+   color: @white;
+   text-transform: uppercase;
+}
+
+#main > #loading {
+   font-size: 8rem;
+   font-weight: 600;
+   line-height: 1;
+   text-align: center;
+}
+
+/* @end */
+
+/* @group Main Area */
+
+#main {
+    background-color: @slate;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 4rem;
+    width: 100%;
+}
+
+#settings:target + #main {
+    left: @sidebar_width;
+}
+
+/* @end */
+   
+/* @group Movie List */
+
+.movieList {
+    background-color: darken(@white, 8%);
+    border-bottom: 12px solid darken(@white, 20%);
+    .box-shadow(0 0 4px @shadow);
+}
+
+.movieList:last-child {
+   border-bottom: 0;
+}
+
+.movieList header {
+   .box-shadow(inset 0 -1px 0 rgba(0, 0, 0, 0.1));
+    color: darken(@white, 60%);
+    font-size: 2.5rem;
+    font-family: @disp_font;
+    line-height: 3rem;
+    padding: 1rem;
+    text-transform: uppercase;
+}
+
+.movieList ol {
+   .cf;
+    padding: .5rem 1rem;
+}
+
+.movieList.unchecked ol {
+    display: none;
+}
+
+.movieList.unchecked header a,
+.movieList.unchecked header {
+    color: darken(@white, 30%);
+}
+
+.movieList.unchecked header {
+    .box-shadow(none);
+}
+
+/* @end */
+   
+/* @group Movie Item */
+
+.movieItem {
+   background-color: #fff;
+   .box-shadow(0 .1em .25em rgba(0, 0, 0, 0.38));
+   .box-sizing(border-box);
+   float: left;
+   height: 16rem;
+   margin: .5rem 0; /* Default */
+   position: relative;
+   width: 100%; /* Default */
+}
+
+.movieItem,
+.movieItem > a,
+.movieItem h1,
+.movieItem .info,
+.movieItem ul {
+   .box-sizing(border-box);
+   display: block;
+}
+
+.movieItem > a {
+    float: left;
+    height: 100%;
+    margin-right: 1rem;
+    width: 11rem;
+}
+
+.movieItem .info {
+    background-color: #fff;
+    padding: 1rem;
+}
+
+.movieItem img {
+   background-color: @slate;
+   border: 0;
+   height: 100%;
+   width: 100%;
+}
+
+.movieItem h1 {
+   font-family: @disp_font;
+   font-size: 1.8rem;
+   font-weight: 400;
+   line-height: 2rem;
+   margin: 0;
+   max-height: 4rem;
+   overflow: hidden;
+   text-transform: uppercase;
+}
+
+.movieItem h1 span {
+    color: lighten(@slate, 10%);
+    margin-left: .5rem;
+}
+
+.movieItem h1 span:before {
+    color: lighten(@slate, 40%);
+    content: "\2022";
+    margin-right: .5rem;
+}
+
+.movieItem p {
+    font-size: 1.3rem;
+    line-height: 1.5rem;
+    max-height: 7.5rem;
+    overflow: hidden;
+}
+
+.movieItem ul {
+   bottom: 0;
+   font-size: 1.3rem;
+   line-height: 1.5rem;
+   margin: 3px 0;
+   overflow: hidden;
+   position: absolute;
+   right: 0;
+}
+
+.movieItem ul a {
+   display: block;
+   padding: .25rem .5rem;
+}
+
+.movieItem li {
+   display: block;
+   float: left;
+   margin-right: 3px;
+}
+
+.movieItem li:nth-child(1) a {
+   background-color: @blue;
+}
+
+.movieItem li:last-child a {
+   background-color: @red;
+}
+
+/* @end */
+
+@media screen and (min-width: 320px) {
+    html {
+        font-size: 11px;
+    }
+}
+
+@media screen and (min-width: 480px) {
+    .movieList header:before {
+       content: "Movies by ";
+       text-transform: none;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    html {
+        font-size: 12px;
+    }
+    
+    #menu {
+        display: none;
+    }
+    
+    #settings {
+       padding: 1rem 2rem;
+       position: fixed;
+    }
+    
+    #main {
+       left: @sidebar_width;
+       top: 0;
+       width: auto;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    #main {
+        width: 61rem;
+    }
+    
+    .movieList ol {
+       padding: .5rem;
+    }
+    
+    .movieItem {
+       margin: .5rem;
+       width: auto;
+    }
+    
+    .movieItem > a {
+       margin-right: 0;
+    }
+    
+    .movieItem .info {
+       display: none;
+       position: absolute;
+       top: 2rem;
+       width: 20rem;
+      .box-shadow(~"0 1.8rem 2rem rgba(0, 0, 0, .3), 0 0 1px rgba(0, 0, 0, .15)");
+       z-index: 100;
+    }
+    
+    .movieItem .info {
+       left: 50%;
+       margin-left: 2rem;
+    }
+    
+    .movieItem .info h1 {
+       position: relative;
+    }
+    
+    .movieItem.edge .info {
+       left: auto;
+       right: 50%;
+       margin-left: 0;
+       margin-right: 2rem;
+    }
+    
+    .movieItem .info h1:before,
+    .movieItem.edge .info h1:after {
+       content: "";
+       position: absolute;
+       top: .5rem;
+       border-style: solid;
+       border-color: transparent #fff;
+       display: block;
+       width: 0;
+    }
+    
+    .movieItem .info h1:before {
+       left: -24px;
+       border-width: 1rem 1rem 1rem 0;
+    }
+    
+    .movieItem.edge .info h1:before {
+       left: 0;
+       border-width: 0;
+       display: none;
+    }
+    
+    .movieItem.edge .info h1:after {
+       right: -24px;
+       border-width: 1rem 0 1rem 1rem;
+    }
+    
+    .movieItem p {
+       margin-bottom: 2rem;
+    }
+    
+    .movieItem:target .info,
+    .movieItem.target .info {
+       display: block;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    #main {
+        width: 73rem;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    #main {
+        width: 85rem;
+    }
+}
+
+@media screen and (min-width: 1600px) {
+    #main {
+        width: 97rem;
+    }
+}
+
+@media screen and (min-width: 1800px) {
+    #main {
+        width: 109rem;
+    }
+}
